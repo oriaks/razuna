@@ -149,6 +149,21 @@
 				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',3)" style="text-decoration:none;">FLAC</a></td>
 				<td></td>
 			</tr>
+			<tr class="list">
+				<td align="center"><input type="checkbox" name="convert_to" value="aac.m4a"></td>
+				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',4)" style="text-decoration:none;">AAC.M4A</a></td>
+				<td></td>
+			</tr>
+			<tr class="list">
+				<td align="center"><input type="checkbox" name="convert_to" value="alac.m4a"></td>
+				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',5)" style="text-decoration:none;">ALAC.M4A</a></td>
+				<td></td>
+			</tr>
+			<tr class="list">
+				<td align="center"><input type="checkbox" name="convert_to" value="aiff"></td>
+				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',6)" style="text-decoration:none;">AIFF</a></td>
+				<td></td>
+			</tr>
 			<tr>
 				<td colspan="4"><input type="button" name="convertbutton" value="#myFusebox.getApplicationData().defaults.trans("convert_button")#" class="button" onclick="convertaudios('form#attributes.file_id#');"> <div id="statusconvert" style="padding:10px;color:green;background-color:##FFFFE0;display:none;"></div><div id="statusconvertdummy"></div></td>
 			</tr>

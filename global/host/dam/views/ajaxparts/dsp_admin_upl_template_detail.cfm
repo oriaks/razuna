@@ -1622,6 +1622,24 @@
 				<td><a href="##" onclick="clickcbk('formupltemp','convert_to',91);return false;" style="text-decoration:none;">FLAC</a></td>
 				<td></td>
 			</tr>
+			<!--- AAC.M4A --->
+			<tr>
+				<td align="center"><input type="checkbox" name="convert_to" value="aud-m4a"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "aac.m4a"> checked="checked"</cfif></cfloop>></td>
+				<td><a href="##" onclick="clickcbk('formupltemp','convert_to',92);return false;" style="text-decoration:none;">AAC.M4A</a></td>
+				<td></td>
+			</tr>
+			<!--- ALAC.M4A --->
+			<tr>
+				<td align="center"><input type="checkbox" name="convert_to" value="aud-m4a"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "alac.m4a"> checked="checked"</cfif></cfloop>></td>
+				<td><a href="##" onclick="clickcbk('formupltemp','convert_to',93);return false;" style="text-decoration:none;">ALAC.M4A</a></td>
+				<td></td>
+			</tr>
+			<!--- AIFF --->
+			<tr>
+				<td align="center"><input type="checkbox" name="convert_to" value="aud-aiff"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "aiff"> checked="checked"</cfif></cfloop>></td>
+				<td><a href="##" onclick="clickcbk('formupltemp','convert_to',94);return false;" style="text-decoration:none;">AIFF</a></td>
+				<td></td>
+			</tr>
 		</table>
 	</div>
 </div>
