@@ -1379,13 +1379,44 @@
 			<cfswitch expression="#theformat#">
 				<!--- OGG --->
 				<cfcase value="ogg">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -acodec libvorbis -aq #thebitrate# -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theexe = "/usr/bin/oggenc">
+					<cfset arguments.thestruct.theargument="--bitrate #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
 				</cfcase>
 				<!--- MP3 --->
 				<cfcase value="mp3">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -ab #thebitrate#k -y ""#thisfinalaudioname#""">
+					<cfswitch expression="#thebitrate#">
+						<cfcase value=0>
+							<cfset arguments.thestruct.theexe = "/usr/bin/lame">
+							<cfset arguments.thestruct.theargument="--replaygain-accurate --vbr-new -V 0 ""#inputpath#"" ""#thisfinalaudioname#""">
+						</cfcase>
+						<cfdefaultcase>
+							<cfset arguments.thestruct.theexe = "/usr/bin/lame">
+							<cfset arguments.thestruct.theargument="--replaygain-accurate --cbr -b #thebitrate# ""#inputpath#"" ""#thisfinalaudioname#""">
+						</cfdefaultcase>
+					</cfswitch>
+				</cfcase>
+				<!--- FLAC --->
+				<cfcase value="flac">
+					<cfset arguments.thestruct.theexe = "/usr/bin/flac">
+					<cfset arguments.thestruct.theargument="--force --output-name ""#thisfinalaudioname#"" --compression-level-5 ""#inputpath#""">
+				</cfcase>
+				<!--- AAC.M4A --->
+				<cfcase value="aac.m4a">
+					<cfset arguments.thestruct.theexe = "/usr/bin/fdkaac">
+					<cfset arguments.thestruct.theargument="-o ""#thisfinalaudioname#"" --profile 2 --bitrate-mode 4 --transport-format 0 --moov-before-mdat ""#inputpath#""">
+				</cfcase>
+				<!--- ALAC.M4A --->
+				<cfcase value="alac.m4a">
+					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
+					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a alac -f ipod -y ""#thisfinalaudioname#""">
+				</cfcase>
+				<!--- AIFF --->
+				<cfcase value="aiff">
+					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
+					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a pcm_s16be -f aiff -y ""#thisfinalaudioname#""">
 				</cfcase>
 				<cfdefaultcase>
+					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
 					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -y ""#thisfinalaudioname#""">
 				</cfdefaultcase>
 			</cfswitch>
