@@ -89,7 +89,7 @@
 				</tr>
 				<tr class="list">
 					<td align="center"><input type="checkbox" name="convert_to" value="flac"></td>
-					<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',3)">FLAC</a></td>
+					<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',3)" style="text-decoration:none;">FLAC</a></td>
 					<td></td>
 				</tr>
 				<tr>
