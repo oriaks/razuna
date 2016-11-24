@@ -1375,11 +1375,50 @@
 			<cfset var finalaudioname = "#newname#" & "_" & #newid.id# & "." & #theformat#>
 			<cfset var thisfinalaudioname = "#thisfolder#/#finalaudioname#">
 			<cfset var thisfinalaudioname4copy = thisfinalaudioname>
+
+			<!--- custom field test --->
+			<cfquery datasource="#application.razuna.datasource#" name="customfield">
+				<!--- would require to manage multiple rows
+				SELECT #session.hostdbprefix#custom_fields_text.cf_text,#session.hostdbprefix#custom_fields_values.cf_value
+				FROM #session.hostdbprefix#custom_fields_values
+				LEFT JOIN #session.hostdbprefix#custom_fields_text
+				ON #session.hostdbprefix#custom_fields_values.cf_id_r = #session.hostdbprefix#custom_fields_text.cf_id_r
+				WHERE #session.hostdbprefix#custom_fields_values.asset_id_r = <cfqueryparam value="#arguments.thestruct.file_id#" cfsqltype="CF_SQL_VARCHAR">
+				--->
+				SELECT #session.hostdbprefix#custom_fields_values.asset_id_r,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Album', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) album,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Album Artist', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) album_artist,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Artist', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) artist,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Comment', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) comment,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Copyright', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) copyright,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Date', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) date,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'ISRC', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) isrc,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Title', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) title,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Track Number', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) track_number
+				FROM #session.hostdbprefix#custom_fields_values
+				LEFT JOIN #session.hostdbprefix#custom_fields_text
+				ON #session.hostdbprefix#custom_fields_values.cf_id_r = #session.hostdbprefix#custom_fields_text.cf_id_r
+				WHERE #session.hostdbprefix#custom_fields_values.asset_id_r = <cfqueryparam value="#arguments.thestruct.file_id#" cfsqltype="CF_SQL_VARCHAR">
+				GROUP BY #session.hostdbprefix#custom_fields_values.asset_id_r
+			</cfquery>
+			<cfset var thealbum = customfield.album>
+			<cfset var thealbumartist = customfield.album_artist>
+			<cfset var theartist = customfield.artist>
+			<cfset var thecomment = customfield.comment>
+			<cfset var thecopyright = customfield.copyright>
+			<cfset var thedate = customfield.date>
+			<cfset var theisrc = customfield.isrc>
+			<cfset var thetitle = customfield.title>
+			<cfset var thetracknumber = customfield.track_number>
+
 			<!--- FFMPEG: Set convert parameters for the different types --->
 			<cfswitch expression="#theformat#">
 				<!--- OGG --->
 				<cfcase value="ogg">
 					<cfset arguments.thestruct.theexe = "/usr/bin/oggenc">
+					<!--- custom field test
+					<cfset arguments.thestruct.theargument="--artist ""#theartist#"" --bitrate #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
+					--->
 					<cfset arguments.thestruct.theargument="--bitrate #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
 				</cfcase>
 				<!--- MP3 --->
