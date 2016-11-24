@@ -112,6 +112,7 @@
 				<option value="192" selected="true">192</option>
 				<option value="256">256</option>
 				<option value="320">320</option>
+				<option value="0">VBR</option>
 				</select></td>
 				<td rowspan="5" valign="top" width="500">
 					<strong>#myFusebox.getApplicationData().defaults.trans("audio_original")#</strong>
@@ -127,16 +128,16 @@
 				<td align="center"><input type="checkbox" name="convert_to" value="ogg"></td>
 				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',2)" style="text-decoration:none;">OGG</a></td>
 				<td><select name="convert_bitrate_ogg" id="convert_bitrate_ogg">
-				<option value="10">82</option>
-				<option value="20">102</option>
-				<option value="30">115</option>
-				<option value="40">137</option>
-				<option value="50">147</option>
-				<option value="60" selected="true">176</option>
-				<option value="70">192</option>
-				<option value="80">224</option>
-				<option value="90">290</option>
-				<option value="100">434</option>
+				<option value="82">82</option>
+				<option value="102">102</option>
+				<option value="115">115</option>
+				<option value="137">137</option>
+				<option value="147">147</option>
+				<option value="176" selected="true">176</option>
+				<option value="192">192</option>
+				<option value="224">224</option>
+				<option value="290">290</option>
+				<option value="434">434</option>
 				</select></td>
 			</tr>
 			<tr class="list">
