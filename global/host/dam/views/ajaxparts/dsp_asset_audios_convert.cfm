@@ -127,17 +127,19 @@
 			<tr class="list">
 				<td align="center"><input type="checkbox" name="convert_to" value="ogg"></td>
 				<td><a href="##" onclick="clickcbk('form#attributes.file_id#','convert_to',2)" style="text-decoration:none;">OGG</a></td>
-				<td><select name="convert_bitrate_ogg" id="convert_bitrate_ogg">
-				<option value="82">82</option>
-				<option value="102">102</option>
-				<option value="115">115</option>
-				<option value="137">137</option>
-				<option value="147">147</option>
-				<option value="176" selected="true">176</option>
-				<option value="192">192</option>
-				<option value="224">224</option>
-				<option value="290">290</option>
-				<option value="434">434</option>
+				<td><select name="convert_quality_ogg" id="convert_quality_ogg">
+				<option value="-1">-1</option>
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected="true">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
 				</select></td>
 			</tr>
 			<tr class="list">
