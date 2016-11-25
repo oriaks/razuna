@@ -1506,7 +1506,7 @@
 				<td></td>
 			</tr>
 			<!--- OGG --->
-			<cfset quality_ogg = 3>
+			<cfset quality_ogg = 6>
 			<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg"><cfset quality_ogg = upl_temp_value></cfif></cfloop>
 			<tr>
 				<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg"> checked="checked"</cfif></cfloop>></td>
@@ -1530,7 +1530,7 @@
 				<td colspan="3">
 					<div id="ogg_more" style="display:none;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="grid">
-							<cfset quality_ogg_2 = 3>
+							<cfset quality_ogg_2 = 6>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_2"><cfset quality_ogg_2 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center" nowrap="nowrap"><input type="checkbox" name="convert_to" value="aud-ogg_2"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_2"> checked="checked"</cfif></cfloop>></td>
@@ -1550,7 +1550,7 @@
 								<option value="10"<cfif quality_ogg_2 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_3 = 3>
+							<cfset quality_ogg_3 = 6>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_3"><cfset quality_ogg_3 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_3"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_3"> checked="checked"</cfif></cfloop>></td>
@@ -1570,7 +1570,7 @@
 								<option value="10"<cfif quality_ogg_3 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_4 = 3>
+							<cfset quality_ogg_4 = 6>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_4"><cfset quality_ogg_4 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_4"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_4"> checked="checked"</cfif></cfloop>></td>
@@ -1590,7 +1590,7 @@
 								<option value="10"<cfif quality_ogg_4 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_5 = 3>
+							<cfset quality_ogg_5 = 6>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_5"><cfset quality_ogg_5 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_5"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_5"> checked="checked"</cfif></cfloop>></td>
@@ -1610,7 +1610,7 @@
 								<option value="10"<cfif quality_ogg_5 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_6 = 3>
+							<cfset quality_ogg_6 = 6>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_6"><cfset quality_ogg_6 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_6"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_6"> checked="checked"</cfif></cfloop>></td>

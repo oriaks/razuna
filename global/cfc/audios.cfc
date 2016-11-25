@@ -1455,7 +1455,7 @@
 				<!--- AAC.M4A --->
 				<cfcase value="aac.m4a">
 					<cfset arguments.thestruct.theexe = "/usr/bin/fdkaac">
-					<cfset arguments.thestruct.theargument="-o ""#thisfinalaudioname#"" --profile 2 --bitrate-mode 4 --transport-format 0 --moov-before-mdat ""#inputpath#""">
+					<cfset arguments.thestruct.theargument="-o ""#thisfinalaudioname#"" --profile 2 --bitrate-mode 5 --transport-format 0 --moov-before-mdat ""#inputpath#""">
 				</cfcase>
 				<!--- ALAC.M4A --->
 				<cfcase value="alac.m4a">
