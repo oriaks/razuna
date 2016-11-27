@@ -109,9 +109,9 @@
 				<option value="96">96</option>
 				<option value="128">128</option>
 				<option value="160">160</option>
-				<option value="192" selected="true">192</option>
+				<option value="192">192</option>
 				<option value="256">256</option>
-				<option value="320">320</option>
+				<option value="320" selected="true">320</option>
 				<option value="0">VBR</option>
 				</select></td>
 				<td rowspan="5" valign="top" width="500">

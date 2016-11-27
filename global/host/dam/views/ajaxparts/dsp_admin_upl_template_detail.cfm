@@ -1370,7 +1370,7 @@
 				<td></td>
 				<td><strong>BitRate</strong></td>
 			</tr>
-			<cfset bitrate_mp3 = 192>
+			<cfset bitrate_mp3 = 320>
 			<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3"><cfset bitrate_mp3 = upl_temp_value></cfif></cfloop>
 			<tr>
 				<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3"> checked="checked"</cfif></cfloop>></td>
@@ -1395,7 +1395,7 @@
 				<td colspan="3">
 					<div id="mp3_more" style="display:none;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="grid">
-							<cfset bitrate_mp3_2 = 192>
+							<cfset bitrate_mp3_2 = 320>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3_2"><cfset bitrate_mp3_2 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3_2"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3_2"> checked="checked"</cfif></cfloop>></td>
@@ -1415,7 +1415,7 @@
 									</select>
 								</td>
 							</tr>
-							<cfset bitrate_mp3_3 = 192>
+							<cfset bitrate_mp3_3 = 320>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3_3"><cfset bitrate_mp3_3 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3_3"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3_3"> checked="checked"</cfif></cfloop>></td>
@@ -1435,7 +1435,7 @@
 									</select>
 								</td>
 							</tr>
-							<cfset bitrate_mp3_4 = 192>
+							<cfset bitrate_mp3_4 = 320>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3_4"><cfset bitrate_mp3_4 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3_4"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3_4"> checked="checked"</cfif></cfloop>></td>
@@ -1455,7 +1455,7 @@
 									</select>
 								</td>
 							</tr>
-							<cfset bitrate_mp3_5 = 192>
+							<cfset bitrate_mp3_5 = 320>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3_5"><cfset bitrate_mp3_5 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3_5"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3_5"> checked="checked"</cfif></cfloop>></td>
@@ -1475,7 +1475,7 @@
 									</select>
 								</td>
 							</tr>
-							<cfset bitrate_mp3_6 = 192>
+							<cfset bitrate_mp3_6 = 320>
 							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_mp3_6"><cfset bitrate_mp3_6 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td width="1%" nowrap="nowrap" align="center"><input type="checkbox" name="convert_to" value="aud-mp3_6"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "mp3_6"> checked="checked"</cfif></cfloop>></td>
