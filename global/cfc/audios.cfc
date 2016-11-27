@@ -1452,7 +1452,7 @@
 				<!--- AIFF --->
 				<cfcase value="aiff">
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a pcm_s16be -f aiff -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a `ffprobe -v quiet -select_streams a -show_entries stream=codec_name -of csv ""#inputpath#"" | awk -F ',' '/^stream,/ {print $2}' | sed 's|le$|be|;'` -f aiff -y ""#thisfinalaudioname#""">
 				</cfcase>
 				<cfdefaultcase>
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
