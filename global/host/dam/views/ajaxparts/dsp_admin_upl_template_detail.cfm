@@ -1506,128 +1506,128 @@
 				<td></td>
 			</tr>
 			<!--- OGG --->
-			<cfset quality_ogg = 6>
-			<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg"><cfset quality_ogg = upl_temp_value></cfif></cfloop>
+			<cfset bitrate_ogg = 6>
+			<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg"><cfset bitrate_ogg = upl_temp_value></cfif></cfloop>
 			<tr>
 				<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg"> checked="checked"</cfif></cfloop>></td>
 				<td><a href="##" onclick="clickcbk('formupltemp','convert_to',85);return false;" style="text-decoration:none;">OGG</a></td>
-				<td><select name="convert_quality_ogg" id="convert_quality_ogg">
-				<option value="-1"<cfif quality_ogg EQ -1> selected="true"</cfif>>-1</option>
-				<option value="0"<cfif quality_ogg EQ 0> selected="true"</cfif>>0</option>
-				<option value="1"<cfif quality_ogg EQ 1> selected="true"</cfif>>1</option>
-				<option value="2"<cfif quality_ogg EQ 2> selected="true"</cfif>>2</option>
-				<option value="3"<cfif quality_ogg EQ 3> selected="true"</cfif>>3</option>
-				<option value="4"<cfif quality_ogg EQ 4> selected="true"</cfif>>4</option>
-				<option value="5"<cfif quality_ogg EQ 5> selected="true"</cfif>>5</option>
-				<option value="6"<cfif quality_ogg EQ 6> selected="true"</cfif>>6</option>
-				<option value="7"<cfif quality_ogg EQ 7> selected="true"</cfif>>7</option>
-				<option value="8"<cfif quality_ogg EQ 8> selected="true"</cfif>>8</option>
-				<option value="9"<cfif quality_ogg EQ 9> selected="true"</cfif>>9</option>
-				<option value="10"<cfif quality_ogg EQ 10> selected="true"</cfif>>10</option>
+				<td><select name="convert_bitrate_ogg" id="convert_bitrate_ogg">
+				<option value="-1"<cfif bitrate_ogg EQ -1> selected="true"</cfif>>-1</option>
+				<option value="0"<cfif bitrate_ogg EQ 0> selected="true"</cfif>>0</option>
+				<option value="1"<cfif bitrate_ogg EQ 1> selected="true"</cfif>>1</option>
+				<option value="2"<cfif bitrate_ogg EQ 2> selected="true"</cfif>>2</option>
+				<option value="3"<cfif bitrate_ogg EQ 3> selected="true"</cfif>>3</option>
+				<option value="4"<cfif bitrate_ogg EQ 4> selected="true"</cfif>>4</option>
+				<option value="5"<cfif bitrate_ogg EQ 5> selected="true"</cfif>>5</option>
+				<option value="6"<cfif bitrate_ogg EQ 6> selected="true"</cfif>>6</option>
+				<option value="7"<cfif bitrate_ogg EQ 7> selected="true"</cfif>>7</option>
+				<option value="8"<cfif bitrate_ogg EQ 8> selected="true"</cfif>>8</option>
+				<option value="9"<cfif bitrate_ogg EQ 9> selected="true"</cfif>>9</option>
+				<option value="10"<cfif bitrate_ogg EQ 10> selected="true"</cfif>>10</option>
 				</select> <a href="##" onclick="$('##ogg_more').slideToggle('slow');return false;">#myFusebox.getApplicationData().defaults.trans("additional")# #myFusebox.getApplicationData().defaults.trans("conversions")#</a></td>
 			</tr>
 			<tr>
 				<td colspan="3">
 					<div id="ogg_more" style="display:none;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="grid">
-							<cfset quality_ogg_2 = 6>
-							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_2"><cfset quality_ogg_2 = upl_temp_value></cfif></cfloop>
+							<cfset bitrate_ogg_2 = 6>
+							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg_2"><cfset bitrate_ogg_2 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center" nowrap="nowrap"><input type="checkbox" name="convert_to" value="aud-ogg_2"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_2"> checked="checked"</cfif></cfloop>></td>
 								<td nowrap="nowrap"><a href="##" onclick="clickcbk('formupltemp','convert_to',86);return false;" style="text-decoration:none;">OGG</a></td>
-								<td width="100%"><select name="convert_quality_ogg_2" id="convert_quality_ogg_2">
-								<option value="-1"<cfif quality_ogg_2 EQ -1> selected="true"</cfif>>-1</option>
-								<option value="0"<cfif quality_ogg_2 EQ 0> selected="true"</cfif>>0</option>
-								<option value="1"<cfif quality_ogg_2 EQ 1> selected="true"</cfif>>1</option>
-								<option value="2"<cfif quality_ogg_2 EQ 2> selected="true"</cfif>>2</option>
-								<option value="3"<cfif quality_ogg_2 EQ 3> selected="true"</cfif>>3</option>
-								<option value="4"<cfif quality_ogg_2 EQ 4> selected="true"</cfif>>4</option>
-								<option value="5"<cfif quality_ogg_2 EQ 5> selected="true"</cfif>>5</option>
-								<option value="6"<cfif quality_ogg_2 EQ 6> selected="true"</cfif>>6</option>
-								<option value="7"<cfif quality_ogg_2 EQ 7> selected="true"</cfif>>7</option>
-								<option value="8"<cfif quality_ogg_2 EQ 8> selected="true"</cfif>>8</option>
-								<option value="9"<cfif quality_ogg_2 EQ 9> selected="true"</cfif>>9</option>
-								<option value="10"<cfif quality_ogg_2 EQ 10> selected="true"</cfif>>10</option>
+								<td width="100%"><select name="convert_bitrate_ogg_2" id="convert_bitrate_ogg_2">
+								<option value="-1"<cfif bitrate_ogg_2 EQ -1> selected="true"</cfif>>-1</option>
+								<option value="0"<cfif bitrate_ogg_2 EQ 0> selected="true"</cfif>>0</option>
+								<option value="1"<cfif bitrate_ogg_2 EQ 1> selected="true"</cfif>>1</option>
+								<option value="2"<cfif bitrate_ogg_2 EQ 2> selected="true"</cfif>>2</option>
+								<option value="3"<cfif bitrate_ogg_2 EQ 3> selected="true"</cfif>>3</option>
+								<option value="4"<cfif bitrate_ogg_2 EQ 4> selected="true"</cfif>>4</option>
+								<option value="5"<cfif bitrate_ogg_2 EQ 5> selected="true"</cfif>>5</option>
+								<option value="6"<cfif bitrate_ogg_2 EQ 6> selected="true"</cfif>>6</option>
+								<option value="7"<cfif bitrate_ogg_2 EQ 7> selected="true"</cfif>>7</option>
+								<option value="8"<cfif bitrate_ogg_2 EQ 8> selected="true"</cfif>>8</option>
+								<option value="9"<cfif bitrate_ogg_2 EQ 9> selected="true"</cfif>>9</option>
+								<option value="10"<cfif bitrate_ogg_2 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_3 = 6>
-							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_3"><cfset quality_ogg_3 = upl_temp_value></cfif></cfloop>
+							<cfset bitrate_ogg_3 = 6>
+							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg_3"><cfset bitrate_ogg_3 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_3"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_3"> checked="checked"</cfif></cfloop>></td>
 								<td><a href="##" onclick="clickcbk('formupltemp','convert_to',87);return false;" style="text-decoration:none;">OGG</a></td>
-								<td><select name="convert_quality_ogg_3" id="convert_quality_ogg_3">
-								<option value="-1"<cfif quality_ogg_3 EQ -1> selected="true"</cfif>>-1</option>
-								<option value="0"<cfif quality_ogg_3 EQ 0> selected="true"</cfif>>0</option>
-								<option value="1"<cfif quality_ogg_3 EQ 1> selected="true"</cfif>>1</option>
-								<option value="2"<cfif quality_ogg_3 EQ 2> selected="true"</cfif>>2</option>
-								<option value="3"<cfif quality_ogg_3 EQ 3> selected="true"</cfif>>3</option>
-								<option value="4"<cfif quality_ogg_3 EQ 4> selected="true"</cfif>>4</option>
-								<option value="5"<cfif quality_ogg_3 EQ 5> selected="true"</cfif>>5</option>
-								<option value="6"<cfif quality_ogg_3 EQ 6> selected="true"</cfif>>6</option>
-								<option value="7"<cfif quality_ogg_3 EQ 7> selected="true"</cfif>>7</option>
-								<option value="8"<cfif quality_ogg_3 EQ 8> selected="true"</cfif>>8</option>
-								<option value="9"<cfif quality_ogg_3 EQ 9> selected="true"</cfif>>9</option>
-								<option value="10"<cfif quality_ogg_3 EQ 10> selected="true"</cfif>>10</option>
+								<td><select name="convert_bitrate_ogg_3" id="convert_bitrate_ogg_3">
+								<option value="-1"<cfif bitrate_ogg_3 EQ -1> selected="true"</cfif>>-1</option>
+								<option value="0"<cfif bitrate_ogg_3 EQ 0> selected="true"</cfif>>0</option>
+								<option value="1"<cfif bitrate_ogg_3 EQ 1> selected="true"</cfif>>1</option>
+								<option value="2"<cfif bitrate_ogg_3 EQ 2> selected="true"</cfif>>2</option>
+								<option value="3"<cfif bitrate_ogg_3 EQ 3> selected="true"</cfif>>3</option>
+								<option value="4"<cfif bitrate_ogg_3 EQ 4> selected="true"</cfif>>4</option>
+								<option value="5"<cfif bitrate_ogg_3 EQ 5> selected="true"</cfif>>5</option>
+								<option value="6"<cfif bitrate_ogg_3 EQ 6> selected="true"</cfif>>6</option>
+								<option value="7"<cfif bitrate_ogg_3 EQ 7> selected="true"</cfif>>7</option>
+								<option value="8"<cfif bitrate_ogg_3 EQ 8> selected="true"</cfif>>8</option>
+								<option value="9"<cfif bitrate_ogg_3 EQ 9> selected="true"</cfif>>9</option>
+								<option value="10"<cfif bitrate_ogg_3 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_4 = 6>
-							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_4"><cfset quality_ogg_4 = upl_temp_value></cfif></cfloop>
+							<cfset bitrate_ogg_4 = 6>
+							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg_4"><cfset bitrate_ogg_4 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_4"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_4"> checked="checked"</cfif></cfloop>></td>
 								<td><a href="##" onclick="clickcbk('formupltemp','convert_to',88);return false;" style="text-decoration:none;">OGG</a></td>
-								<td><select name="convert_quality_ogg_4" id="convert_quality_ogg_4">
-								<option value="-1"<cfif quality_ogg_4 EQ -1> selected="true"</cfif>>-1</option>
-								<option value="0"<cfif quality_ogg_4 EQ 0> selected="true"</cfif>>0</option>
-								<option value="1"<cfif quality_ogg_4 EQ 1> selected="true"</cfif>>1</option>
-								<option value="2"<cfif quality_ogg_4 EQ 2> selected="true"</cfif>>2</option>
-								<option value="3"<cfif quality_ogg_4 EQ 3> selected="true"</cfif>>3</option>
-								<option value="4"<cfif quality_ogg_4 EQ 4> selected="true"</cfif>>4</option>
-								<option value="5"<cfif quality_ogg_4 EQ 5> selected="true"</cfif>>5</option>
-								<option value="6"<cfif quality_ogg_4 EQ 6> selected="true"</cfif>>6</option>
-								<option value="7"<cfif quality_ogg_4 EQ 7> selected="true"</cfif>>7</option>
-								<option value="8"<cfif quality_ogg_4 EQ 8> selected="true"</cfif>>8</option>
-								<option value="9"<cfif quality_ogg_4 EQ 9> selected="true"</cfif>>9</option>
-								<option value="10"<cfif quality_ogg_4 EQ 10> selected="true"</cfif>>10</option>
+								<td><select name="convert_bitrate_ogg_4" id="convert_bitrate_ogg_4">
+								<option value="-1"<cfif bitrate_ogg_4 EQ -1> selected="true"</cfif>>-1</option>
+								<option value="0"<cfif bitrate_ogg_4 EQ 0> selected="true"</cfif>>0</option>
+								<option value="1"<cfif bitrate_ogg_4 EQ 1> selected="true"</cfif>>1</option>
+								<option value="2"<cfif bitrate_ogg_4 EQ 2> selected="true"</cfif>>2</option>
+								<option value="3"<cfif bitrate_ogg_4 EQ 3> selected="true"</cfif>>3</option>
+								<option value="4"<cfif bitrate_ogg_4 EQ 4> selected="true"</cfif>>4</option>
+								<option value="5"<cfif bitrate_ogg_4 EQ 5> selected="true"</cfif>>5</option>
+								<option value="6"<cfif bitrate_ogg_4 EQ 6> selected="true"</cfif>>6</option>
+								<option value="7"<cfif bitrate_ogg_4 EQ 7> selected="true"</cfif>>7</option>
+								<option value="8"<cfif bitrate_ogg_4 EQ 8> selected="true"</cfif>>8</option>
+								<option value="9"<cfif bitrate_ogg_4 EQ 9> selected="true"</cfif>>9</option>
+								<option value="10"<cfif bitrate_ogg_4 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_5 = 6>
-							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_5"><cfset quality_ogg_5 = upl_temp_value></cfif></cfloop>
+							<cfset bitrate_ogg_5 = 6>
+							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg_5"><cfset bitrate_ogg_5 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_5"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_5"> checked="checked"</cfif></cfloop>></td>
 								<td><a href="##" onclick="clickcbk('formupltemp','convert_to',89);return false;" style="text-decoration:none;">OGG</a></td>
-								<td><select name="convert_quality_ogg_5" id="convert_quality_ogg_5">
-								<option value="-1"<cfif quality_ogg_5 EQ -1> selected="true"</cfif>>-1</option>
-								<option value="0"<cfif quality_ogg_5 EQ 0> selected="true"</cfif>>0</option>
-								<option value="1"<cfif quality_ogg_5 EQ 1> selected="true"</cfif>>1</option>
-								<option value="2"<cfif quality_ogg_5 EQ 2> selected="true"</cfif>>2</option>
-								<option value="3"<cfif quality_ogg_5 EQ 3> selected="true"</cfif>>3</option>
-								<option value="4"<cfif quality_ogg_5 EQ 4> selected="true"</cfif>>4</option>
-								<option value="5"<cfif quality_ogg_5 EQ 5> selected="true"</cfif>>5</option>
-								<option value="6"<cfif quality_ogg_5 EQ 6> selected="true"</cfif>>6</option>
-								<option value="7"<cfif quality_ogg_5 EQ 7> selected="true"</cfif>>7</option>
-								<option value="8"<cfif quality_ogg_5 EQ 8> selected="true"</cfif>>8</option>
-								<option value="9"<cfif quality_ogg_5 EQ 9> selected="true"</cfif>>9</option>
-								<option value="10"<cfif quality_ogg_5 EQ 10> selected="true"</cfif>>10</option>
+								<td><select name="convert_bitrate_ogg_5" id="convert_bitrate_ogg_5">
+								<option value="-1"<cfif bitrate_ogg_5 EQ -1> selected="true"</cfif>>-1</option>
+								<option value="0"<cfif bitrate_ogg_5 EQ 0> selected="true"</cfif>>0</option>
+								<option value="1"<cfif bitrate_ogg_5 EQ 1> selected="true"</cfif>>1</option>
+								<option value="2"<cfif bitrate_ogg_5 EQ 2> selected="true"</cfif>>2</option>
+								<option value="3"<cfif bitrate_ogg_5 EQ 3> selected="true"</cfif>>3</option>
+								<option value="4"<cfif bitrate_ogg_5 EQ 4> selected="true"</cfif>>4</option>
+								<option value="5"<cfif bitrate_ogg_5 EQ 5> selected="true"</cfif>>5</option>
+								<option value="6"<cfif bitrate_ogg_5 EQ 6> selected="true"</cfif>>6</option>
+								<option value="7"<cfif bitrate_ogg_5 EQ 7> selected="true"</cfif>>7</option>
+								<option value="8"<cfif bitrate_ogg_5 EQ 8> selected="true"</cfif>>8</option>
+								<option value="9"<cfif bitrate_ogg_5 EQ 9> selected="true"</cfif>>9</option>
+								<option value="10"<cfif bitrate_ogg_5 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
-							<cfset quality_ogg_6 = 6>
-							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_quality_ogg_6"><cfset quality_ogg_6 = upl_temp_value></cfif></cfloop>
+							<cfset bitrate_ogg_6 = 6>
+							<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_bitrate_ogg_6"><cfset bitrate_ogg_6 = upl_temp_value></cfif></cfloop>
 							<tr>
 								<td align="center"><input type="checkbox" name="convert_to" value="aud-ogg_6"<cfloop query="qry_detail.uplval"><cfif upl_temp_field EQ "convert_to" AND upl_temp_value EQ "ogg_6"> checked="checked"</cfif></cfloop>></td>
 								<td><a href="##" onclick="clickcbk('formupltemp','convert_to',90);return false;" style="text-decoration:none;">OGG</a></td>
-								<td><select name="convert_quality_ogg_6" id="convert_quality_ogg_6">
-								<option value="-1"<cfif quality_ogg_6 EQ -1> selected="true"</cfif>>-1</option>
-								<option value="0"<cfif quality_ogg_6 EQ 0> selected="true"</cfif>>0</option>
-								<option value="1"<cfif quality_ogg_6 EQ 1> selected="true"</cfif>>1</option>
-								<option value="2"<cfif quality_ogg_6 EQ 2> selected="true"</cfif>>2</option>
-								<option value="3"<cfif quality_ogg_6 EQ 3> selected="true"</cfif>>3</option>
-								<option value="4"<cfif quality_ogg_6 EQ 4> selected="true"</cfif>>4</option>
-								<option value="5"<cfif quality_ogg_6 EQ 5> selected="true"</cfif>>5</option>
-								<option value="6"<cfif quality_ogg_6 EQ 6> selected="true"</cfif>>6</option>
-								<option value="7"<cfif quality_ogg_6 EQ 7> selected="true"</cfif>>7</option>
-								<option value="8"<cfif quality_ogg_6 EQ 8> selected="true"</cfif>>8</option>
-								<option value="9"<cfif quality_ogg_6 EQ 9> selected="true"</cfif>>9</option>
-								<option value="10"<cfif quality_ogg_6 EQ 10> selected="true"</cfif>>10</option>
+								<td><select name="convert_bitrate_ogg_6" id="convert_bitrate_ogg_6">
+								<option value="-1"<cfif bitrate_ogg_6 EQ -1> selected="true"</cfif>>-1</option>
+								<option value="0"<cfif bitrate_ogg_6 EQ 0> selected="true"</cfif>>0</option>
+								<option value="1"<cfif bitrate_ogg_6 EQ 1> selected="true"</cfif>>1</option>
+								<option value="2"<cfif bitrate_ogg_6 EQ 2> selected="true"</cfif>>2</option>
+								<option value="3"<cfif bitrate_ogg_6 EQ 3> selected="true"</cfif>>3</option>
+								<option value="4"<cfif bitrate_ogg_6 EQ 4> selected="true"</cfif>>4</option>
+								<option value="5"<cfif bitrate_ogg_6 EQ 5> selected="true"</cfif>>5</option>
+								<option value="6"<cfif bitrate_ogg_6 EQ 6> selected="true"</cfif>>6</option>
+								<option value="7"<cfif bitrate_ogg_6 EQ 7> selected="true"</cfif>>7</option>
+								<option value="8"<cfif bitrate_ogg_6 EQ 8> selected="true"</cfif>>8</option>
+								<option value="9"<cfif bitrate_ogg_6 EQ 9> selected="true"</cfif>>9</option>
+								<option value="10"<cfif bitrate_ogg_6 EQ 10> selected="true"</cfif>>10</option>
 								</select></td>
 							</tr>
 						</table>

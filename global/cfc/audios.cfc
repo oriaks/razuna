@@ -1368,19 +1368,6 @@
 			<cfelse>
 				<cfset var thebitrate = Evaluate("arguments.thestruct.convert_bitrate_#theformat#")>
 			</cfif>
-			<cfif arguments.thestruct.upl_template NEQ 0 AND arguments.thestruct.upl_template NEQ "undefined"  AND arguments.thestruct.upl_template NEQ "">
-				<cfquery datasource="#application.razuna.datasource#" name="qry_b">
-				SELECT upl_temp_field, upl_temp_value
-				FROM #session.hostdbprefix#upload_templates_val
-				WHERE upl_temp_field = <cfqueryparam CFSQLType="CF_SQL_VARCHAR" value="convert_quality_#theformat#">
-				AND upl_temp_id_r = <cfqueryparam CFSQLType="CF_SQL_VARCHAR" value="#arguments.thestruct.upl_template#">
-				AND host_id = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.thestruct.hostid#">
-				</cfquery>
-				<!--- Set image width and height --->
-				<cfset var thequality  = qry_b.upl_temp_value>
-			<cfelse>
-				<cfset var thequality = Evaluate("arguments.thestruct.convert_quality_#theformat#")>
-			</cfif>
 			<!--- From here on we need to remove the number of the format (if any) --->
 			<cfset var theformat = listfirst(theformat,"_")>
 			<!--- Put together the filenames --->
@@ -1432,7 +1419,7 @@
 					<!--- custom field test
 					<cfset arguments.thestruct.theargument="--artist ""#theartist#"" --bitrate #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
 					--->
-					<cfset arguments.thestruct.theargument="--quality #thequality# --output ""#thisfinalaudioname#"" ""#inputpath#""">
+					<cfset arguments.thestruct.theargument="--quality #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
 				</cfcase>
 				<!--- MP3 --->
 				<cfcase value="mp3">

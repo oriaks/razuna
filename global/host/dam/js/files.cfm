@@ -322,14 +322,14 @@ function convertaudios(theform){
 	$("#statusconvert").animate({opacity: 1.0}, 3000).fadeTo("slow", 0.33);
 	// Get values
 	var bitmp3 = $('#convert_bitrate_mp3').val();
-	var qualogg = $('#convert_quality_ogg').val();
+	var bitogg = $('#convert_bitrate_ogg').val();
 	var orgext = $('#theorgext').val();
 	var orgname = escape($('#theorgname').val());
 	var fileid = $('#file_id').val();
 	var thepath = escape($('#thepath').val());
 	var link_kind = $('#link_kind').val();
 	// Call the Action
-	loadcontent('statusconvertdummy','index.cfm?fa=c.audios_convert&convert_to=' + convertto + '&file_id=' + fileid + '&theorgname=' + orgname + '&thepath=' + thepath + '&convert_bitrate_mp3=' + bitmp3 + '&convert_quality_ogg=' + qualogg + '&theorgext=' + orgext + '&link_kind=' + link_kind);
+	loadcontent('statusconvertdummy','index.cfm?fa=c.audios_convert&convert_to=' + convertto + '&file_id=' + fileid + '&theorgname=' + orgname + '&thepath=' + thepath + '&convert_bitrate_mp3=' + bitmp3 + '&convert_bitrate_ogg=' + bitogg + '&theorgext=' + orgext + '&link_kind=' + link_kind);
 }
 // For Audio Renditions
 function convertexistaudrenditions(theform){
@@ -355,13 +355,13 @@ function convertexistaudrenditions(theform){
 	// Get values
 	var aud_group_id = $('#' + theform + ' #aud_group_id').val();
 	var bitmp3 = $('#convert_bitrate_mp3').val();
-	var qualogg = $('#convert_quality_ogg').val();
+	var bitogg = $('#convert_bitrate_ogg').val();
 	var orgext = $('#theorgext').val();
 	var orgname = escape($('#theorgname').val());
 	var fileid = $('#file_id').val();
 	var thepath = escape($('#thepath').val());
 	var link_kind = $('#link_kind').val();
 	// Call the Action
-	loadcontent('statusrenditionconvertdummy','index.cfm?fa=c.rendition_audios_convert&convert_to=' + convertto + '&file_id=' + fileid + '&aud_group_id=' + aud_group_id + '&theorgname=' + orgname + '&thepath=' + thepath + '&convert_bitrate_mp3=' + bitmp3 + '&convert_quality_ogg=' + qualogg + '&theorgext=' + orgext + '&link_kind=' + link_kind);
+	loadcontent('statusrenditionconvertdummy','index.cfm?fa=c.rendition_audios_convert&convert_to=' + convertto + '&file_id=' + fileid + '&aud_group_id=' + aud_group_id + '&theorgname=' + orgname + '&thepath=' + thepath + '&convert_bitrate_mp3=' + bitmp3 + '&convert_bitrate_ogg=' + bitogg + '&theorgext=' + orgext + '&link_kind=' + link_kind);
 }
 </script>
