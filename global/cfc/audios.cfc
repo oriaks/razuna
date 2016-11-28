@@ -1416,47 +1416,214 @@
 				<!--- OGG --->
 				<cfcase value="ogg">
 					<cfset arguments.thestruct.theexe = "/usr/bin/oggenc">
-					<!--- custom field test
-					<cfset arguments.thestruct.theargument="--artist ""#theartist#"" --bitrate #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
-					--->
-					<cfset arguments.thestruct.theargument="--quality #thebitrate# --output ""#thisfinalaudioname#"" ""#inputpath#""">
+					<cfset arguments.thestruct.theargument = "--quality #thebitrate# --output ""#thisfinalaudioname#""">
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " --album ""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --comment albumartist=""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --artist ""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " --comment comment=""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " --comment copyright=""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " --date ""#thedate#""">
+					</cfif>
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " --comment isrc=""#theisrc#""">
+					</cfif>
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " --title ""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tracknum ""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
 				</cfcase>
 				<!--- MP3 --->
 				<cfcase value="mp3">
+					<cfset arguments.thestruct.theexe = "/usr/bin/lame">
+					<cfset arguments.thestruct.theargument = "--replaygain-accurate">
 					<cfswitch expression="#thebitrate#">
 						<cfcase value=0>
-							<cfset arguments.thestruct.theexe = "/usr/bin/lame">
-							<cfset arguments.thestruct.theargument="--replaygain-accurate --vbr-new -V 0 ""#inputpath#"" ""#thisfinalaudioname#""">
+							<cfset arguments.thestruct.theargument &= " --vbr-new -V 0">
 						</cfcase>
 						<cfdefaultcase>
-							<cfset arguments.thestruct.theexe = "/usr/bin/lame">
-							<cfset arguments.thestruct.theargument="--replaygain-accurate --cbr -b #thebitrate# ""#inputpath#"" ""#thisfinalaudioname#""">
+							<cfset arguments.thestruct.theargument &= " --cbr -b ""#thebitrate#""">
 						</cfdefaultcase>
 					</cfswitch>
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tl ""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tv TPE2=""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --ta ""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tc ""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tv TCOP=""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " --ty ""#thedate#""">
+					</cfif>
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tv TSRC=""#theisrc#""">
+					</cfif>
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tt ""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tn ""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " ""#inputpath#"" ""#thisfinalaudioname#""">
 				</cfcase>
 				<!--- FLAC --->
 				<cfcase value="flac">
 					<cfset arguments.thestruct.theexe = "/usr/bin/flac">
-					<cfset arguments.thestruct.theargument="--force --output-name ""#thisfinalaudioname#"" --compression-level-5 ""#inputpath#""">
+					<cfset arguments.thestruct.theargument = "--force --output-name ""#thisfinalaudioname#"" --compression-level-5">
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag album=""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag albumartist=""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag artist=""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag comment=""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag copyright=""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag date=""#thedate#""">
+					</cfif>
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag isrc=""#theisrc#""">
+					</cfif>
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag title=""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag tracknumber=""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
 				</cfcase>
 				<!--- AAC.M4A --->
 				<cfcase value="aac.m4a">
 					<cfset arguments.thestruct.theexe = "/usr/bin/fdkaac">
-					<cfset arguments.thestruct.theargument="-o ""#thisfinalaudioname#"" --profile 2 --bitrate-mode 5 --transport-format 0 --moov-before-mdat ""#inputpath#""">
+					<cfset arguments.thestruct.theargument = "-o ""#thisfinalaudioname#"" --profile 2 --bitrate-mode 5 --transport-format 0 --moov-before-mdat">
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " --album ""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --album-artist ""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " --artist ""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " --comment ""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " --tag cprt:""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " --date ""#thedate#""">
+					</cfif>
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " --long-tag ISRC:""#theisrc#""">
+					</cfif>
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " --title ""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " --track ""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
 				</cfcase>
 				<!--- ALAC.M4A --->
 				<cfcase value="alac.m4a">
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a alac -f ipod -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument = "-i ""#inputpath#"" -map_metadata -1 -c:a alac">
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata album=""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata album_artist=""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata artist=""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata comment=""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata copyright=""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata date=""#thedate#""">
+					</cfif>
+					<!--- Not supported by FFmpeg
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata ----:com.apple.iTunes:ISRC=""#theisrc#""">
+					</cfif>
+					--->
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata title=""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata track=""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " -f ipod -y ""#thisfinalaudioname#""">
 				</cfcase>
 				<!--- AIFF --->
 				<cfcase value="aiff">
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -map_metadata -1 -c:a `ffprobe -v quiet -select_streams a -show_entries stream=codec_name -of csv ""#inputpath#"" | awk -F ',' '/^stream,/ {print $2}' | sed 's|le$|be|;'` -f aiff -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument = "-i ""#inputpath#"" -map_metadata -1 -c:a `ffprobe -v quiet -select_streams a -show_entries stream=codec_name -of csv ""#inputpath#"" | awk -F ',' '/^stream,/ {print $2}' | sed 's|le$|be|;'`">
+					<cfif thealbum NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata album=""#thealbum#""">
+					</cfif>
+					<cfif thealbumartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata album_artist=""#thealbumartist#""">
+					</cfif>
+					<cfif theartist NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata artist=""#theartist#""">
+					</cfif>
+					<cfif thecomment NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata COMM=""#thecomment#""">
+					</cfif>
+					<cfif thecopyright NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata copyright=""#thecopyright#""">
+					</cfif>
+					<cfif thedate NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata date=""#thedate#""">
+					</cfif>
+					<cfif theisrc NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata TSRC=""#theisrc#""">
+					</cfif>
+					<cfif thetitle NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata title=""#thetitle#""">
+					</cfif>
+					<cfif thetracknumber NEQ "">
+						<cfset arguments.thestruct.theargument &= " -metadata track=""#thetracknumber#""">
+					</cfif>
+					<cfset arguments.thestruct.theargument &= " -f aiff -write_id3v2 1 -id3v2_version 4 -y ""#thisfinalaudioname#""">
 				</cfcase>
 				<cfdefaultcase>
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
-					<cfset arguments.thestruct.theargument="-i ""#inputpath#"" -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument = "-i ""#inputpath#"" -y ""#thisfinalaudioname#""">
 				</cfdefaultcase>
 			</cfswitch>
 			<!--- FFMPEG: Convert --->
