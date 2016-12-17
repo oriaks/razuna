@@ -164,18 +164,23 @@
 	<cffunction name="downloadBasket" access="remote" output="false" returntype="struct" returnformat="json">
 		<cfargument name="api_key" required="true" type="string" />
 		<cfargument name="basket_id" required="true" type="string" />
+		<cfargument name="basket_name" required="false" type="string" default="" />
 		<!--- Check key --->
 		<cfset var thesession = checkdb(arguments.api_key)>
 		<!--- Check to see if session is valid --->
 		<cfif thesession>
 			<!--- Create basket name --->
 			<cfset var uuid = createuuid("")>
-			<cfset var name_of_download = "basket-" & uuid & ".zip">
+			<cfif arguments.basket_name NEQ "">
+				<cfset var name_of_download = arguments.basket_name & ".zip">
+			<cfelse>
+	                        <cfset var name_of_download = "basket-" & uuid & ".zip">
+			</cfif>
 			<!--- Call private function --->
 			<cfinvoke method="downloadBasketDo" api_key="#arguments.api_key#" basket_id="#arguments.basket_id#" uuid="#uuid#" name_of_download="#name_of_download#" />
 			<!--- Return --->
 			<cfset thexml.responsecode = 0 />
-			<cfset thexml.message = name_of_download />
+			<cfset thexml.message = "basket-" & uuid & "/" & name_of_download />
 		<!--- No session found --->
 		<cfelse>
 			<cfset var thexml = timeout("s")>
@@ -252,7 +257,8 @@
 		<!--- Remove the tmp dir --->
 		<cfdirectory action="delete" directory="#tmpdir#" recurse="true" />
 		<!--- Move ZIP file --->
-		<cffile action="move" source="#GetTempDirectory()##downloadname#" destination="#path##downloadname#" mode="775" />
+		<cfdirectory action="create" directory="#path#basket-#uuid#" mode="775" />
+		<cffile action="move" source="#GetTempDirectory()##downloadname#" destination="#path#basket-#uuid#/#downloadname#" mode="775" />
 		<!--- Return --->
 		<cfreturn />
 	</cffunction>
