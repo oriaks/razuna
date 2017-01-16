@@ -1373,6 +1373,7 @@
 			<!--- Put together the filenames --->
 			<cfset var newname = listfirst(arguments.thestruct.qry_detail.detail.aud_name_org, ".")>
 			<cfset var finalaudioname = "#newname#" & "_" & #newid.id# & "." & #theformat#>
+			<cfset var thistempaudioname = "#thisfolder#/tmp-#finalaudioname#">
 			<cfset var thisfinalaudioname = "#thisfolder#/#finalaudioname#">
 			<cfset var thisfinalaudioname4copy = thisfinalaudioname>
 
@@ -1394,12 +1395,19 @@
 				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Date', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) date,
 				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'ISRC', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) isrc,
 				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Title', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) title,
-				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Track Number', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) track_number
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Track Number', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) track_number,
+				MAX(IF(#session.hostdbprefix#custom_fields_text.cf_text = 'Cover (front)', #session.hostdbprefix#custom_fields_values.cf_value, NULL)) cover_front
 				FROM #session.hostdbprefix#custom_fields_values
 				LEFT JOIN #session.hostdbprefix#custom_fields_text
 				ON #session.hostdbprefix#custom_fields_values.cf_id_r = #session.hostdbprefix#custom_fields_text.cf_id_r
 				WHERE #session.hostdbprefix#custom_fields_values.asset_id_r = <cfqueryparam value="#arguments.thestruct.file_id#" cfsqltype="CF_SQL_VARCHAR">
 				GROUP BY #session.hostdbprefix#custom_fields_values.asset_id_r
+			</cfquery>
+			<cfquery datasource="#application.razuna.datasource#" name="image">
+				SELECT CONCAT("#arguments.thestruct.assetpath#/",#session.hostdbprefix#images.HOST_ID,"/",#session.hostdbprefix#images.PATH_TO_ASSET,"/",#session.hostdbprefix#images.IMG_FILENAME) cover_front
+				FROM #session.hostdbprefix#images
+				WHERE #session.hostdbprefix#images.FOLDER_ID_R = "#arguments.thestruct.qry_detail.detail.folder_id_r#"
+				AND #session.hostdbprefix#images.IMG_FILENAME = "#customfield.cover_front#"
 			</cfquery>
 			<cfset var thealbum = customfield.album>
 			<cfset var thealbumartist = customfield.album_artist>
@@ -1410,13 +1418,14 @@
 			<cfset var theisrc = customfield.isrc>
 			<cfset var thetitle = customfield.title>
 			<cfset var thetracknumber = customfield.track_number>
+			<cfset var thefrontcover = image.cover_front>
 
 			<!--- FFMPEG: Set convert parameters for the different types --->
 			<cfswitch expression="#theformat#">
 				<!--- OGG --->
 				<cfcase value="ogg">
 					<cfset arguments.thestruct.theexe = "/usr/bin/oggenc">
-					<cfset arguments.thestruct.theargument = "--quality #thebitrate# --output ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument = "--quality #thebitrate# --output ""#thistempaudioname#""">
 					<cfif thealbum NEQ "">
 						<cfset arguments.thestruct.theargument &= " --album ""#thealbum#""">
 					</cfif>
@@ -1445,6 +1454,12 @@
 						<cfset arguments.thestruct.theargument &= " --tracknum ""#thetracknumber#""">
 					</cfif>
 					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theexe2 = "/usr/local/bin/ogg-cover-art">
+						<cfset arguments.thestruct.theargument2 = """#thefrontcover#"" ""#thistempaudioname#""">
+					</cfif>
+					<cfset arguments.thestruct.theexe2 = "mv">
+					<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
 				</cfcase>
 				<!--- MP3 --->
 				<cfcase value="mp3">
@@ -1485,12 +1500,19 @@
 					<cfif thetracknumber NEQ "">
 						<cfset arguments.thestruct.theargument &= " --tn ""#thetracknumber#""">
 					</cfif>
-					<cfset arguments.thestruct.theargument &= " ""#inputpath#"" ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument &= " ""#inputpath#"" ""#thistempaudioname#""">
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theexe2 = "/usr/bin/ffmpeg">
+						<cfset arguments.thestruct.theargument2 = "-i ""#thistempaudioname#"" -i ""#thefrontcover#"" -map 0 -map 1 -map_metadata 0 -c:a copy -metadata:s:v title=""cover"" -metadata:s:v comment=""Cover (Front)"" -f mp3 -write_id3v2 1 -id3v2_version 4 -y ""#thisfinalaudioname#""">
+					<cfelse>
+						<cfset arguments.thestruct.theexe2 = "mv">
+						<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
+					</cfif>
 				</cfcase>
 				<!--- FLAC --->
 				<cfcase value="flac">
 					<cfset arguments.thestruct.theexe = "/usr/bin/flac">
-					<cfset arguments.thestruct.theargument = "--force --output-name ""#thisfinalaudioname#"" --compression-level-5">
+					<cfset arguments.thestruct.theargument = "--force --output-name ""#thistempaudioname#"" --compression-level-5">
 					<cfif thealbum NEQ "">
 						<cfset arguments.thestruct.theargument &= " --tag album=""#thealbum#""">
 					</cfif>
@@ -1518,7 +1540,12 @@
 					<cfif thetracknumber NEQ "">
 						<cfset arguments.thestruct.theargument &= " --tag tracknumber=""#thetracknumber#""">
 					</cfif>
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theargument &= " --picture ""#thefrontcover#""">
+					</cfif>
 					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
+					<cfset arguments.thestruct.theexe2 = "mv">
+					<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
 				</cfcase>
 				<!--- AAC.M4A --->
 				<cfcase value="aac.m4a">
@@ -1552,6 +1579,13 @@
 						<cfset arguments.thestruct.theargument &= " --track ""#thetracknumber#""">
 					</cfif>
 					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theexe2 = "/usr/bin/mp4art">
+						<cfset arguments.thestruct.theargument2 = "--add ""#thefrontcover#"" ""#thisfinalaudioname#""">
+					<cfelse>
+						<cfset arguments.thestruct.theexe2 = "mv">
+						<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
+					</cfif>
 				</cfcase>
 				<!--- ALAC.M4A --->
 				<cfcase value="alac.m4a">
@@ -1587,6 +1621,13 @@
 						<cfset arguments.thestruct.theargument &= " -metadata track=""#thetracknumber#""">
 					</cfif>
 					<cfset arguments.thestruct.theargument &= " -f ipod -y ""#thisfinalaudioname#""">
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theexe2 = "/usr/bin/mp4art">
+						<cfset arguments.thestruct.theargument2 = "--add ""#thefrontcover#"" ""#thisfinalaudioname#""">
+					<cfelse>
+						<cfset arguments.thestruct.theexe2 = "mv">
+						<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
+					</cfif>
 				</cfcase>
 				<!--- AIFF --->
 				<cfcase value="aiff">
@@ -1619,7 +1660,14 @@
 					<cfif thetracknumber NEQ "">
 						<cfset arguments.thestruct.theargument &= " -metadata track=""#thetracknumber#""">
 					</cfif>
-					<cfset arguments.thestruct.theargument &= " -f aiff -write_id3v2 1 -id3v2_version 4 -y ""#thisfinalaudioname#""">
+					<cfset arguments.thestruct.theargument &= " -f aiff -write_id3v2 1 -id3v2_version 4 -y ""#thistempaudioname#""">
+					<cfif thefrontcover NEQ "">
+						<cfset arguments.thestruct.theexe2 = "/usr/bin/ffmpeg">
+						<cfset arguments.thestruct.theargument2 = "-i ""#thistempaudioname#"" -i ""#thefrontcover#"" -map 0 -map 1 -map_metadata 0 -c:a copy -metadata:s:v title=""cover"" -metadata:s:v comment=""Cover (Front)"" -f aiff -write_id3v2 1 -id3v2_version 4 -y ""#thisfinalaudioname#""">
+					<cfelse>
+						<cfset arguments.thestruct.theexe2 = "mv">
+						<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
+					</cfif>
 				</cfcase>
 				<cfdefaultcase>
 					<cfset arguments.thestruct.theexe = "/usr/bin/ffmpeg">
@@ -1639,7 +1687,7 @@
 				<cffile action="write" file="#arguments.thestruct.thesh#" output="." mode="777">
 			<cfelse>
 				<!--- Write files --->
-				<cffile action="write" file="#arguments.thestruct.thesh#" output="#arguments.thestruct.theexe# #arguments.thestruct.theargument#" mode="777">
+				<cffile action="write" file="#arguments.thestruct.thesh#" output="#arguments.thestruct.theexe# #arguments.thestruct.theargument# && #arguments.thestruct.theexe2# #arguments.thestruct.theargument2#; rm -f ""#thistempaudioname#""" mode="777">
 				<!--- Convert audio --->
 				<cfthread name="#newid.id#" intstruct="#arguments.thestruct#">
 					<cfexecute name="#attributes.intstruct.thesh#" timeout="9000" />
