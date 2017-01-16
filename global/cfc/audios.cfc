@@ -1425,7 +1425,7 @@
 				<!--- OGG --->
 				<cfcase value="ogg">
 					<cfset arguments.thestruct.theexe = "/usr/bin/oggenc">
-					<cfset arguments.thestruct.theargument = "--quality #thebitrate# --output ""#thistempaudioname#""">
+					<cfset arguments.thestruct.theargument = "--quality #thebitrate# --output ""#thisfinalaudioname#""">
 					<cfif thealbum NEQ "">
 						<cfset arguments.thestruct.theargument &= " --album ""#thealbum#""">
 					</cfif>
@@ -1456,10 +1456,11 @@
 					<cfset arguments.thestruct.theargument &= " ""#inputpath#""">
 					<cfif thefrontcover NEQ "">
 						<cfset arguments.thestruct.theexe2 = "/usr/local/bin/ogg-cover-art">
-						<cfset arguments.thestruct.theargument2 = """#thefrontcover#"" ""#thistempaudioname#""">
+						<cfset arguments.thestruct.theargument2 = """#thefrontcover#"" ""#thisfinalaudioname#""">
+					<cfelse>
+						<cfset arguments.thestruct.theexe2 = ":">
+						<cfset arguments.thestruct.theargument2 = "nothing to do">
 					</cfif>
-					<cfset arguments.thestruct.theexe2 = "mv">
-					<cfset arguments.thestruct.theargument2 = """#thistempaudioname#"" ""#thisfinalaudioname#""">
 				</cfcase>
 				<!--- MP3 --->
 				<cfcase value="mp3">
