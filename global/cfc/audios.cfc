@@ -1404,7 +1404,7 @@
 				GROUP BY #session.hostdbprefix#custom_fields_values.asset_id_r
 			</cfquery>
 			<cfquery datasource="#application.razuna.datasource#" name="image">
-				SELECT CONCAT("#arguments.thestruct.assetpath#/",#session.hostdbprefix#images.HOST_ID,"/",#session.hostdbprefix#images.PATH_TO_ASSET,"/",#session.hostdbprefix#images.IMG_FILENAME) cover_front
+				SELECT CONCAT("#arguments.thestruct.assetpath#/",#session.hostdbprefix#images.HOST_ID,"/",#session.hostdbprefix#images.PATH_TO_ASSET,"/",#session.hostdbprefix#images.IMG_FILENAME_ORG) cover_front
 				FROM #session.hostdbprefix#images
 				WHERE #session.hostdbprefix#images.FOLDER_ID_R = "#arguments.thestruct.qry_detail.detail.folder_id_r#"
 				AND #session.hostdbprefix#images.IMG_FILENAME = "#customfield.cover_front#"
