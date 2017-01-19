@@ -161,7 +161,7 @@
 							VALUES(
 							<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#f[1]#">,
 							<cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#i#">,
-							<cfqueryparam cfsqltype="cf_sql_varchar" value="#ReplaceNoCase(f[2],',','&##44;','ALL')#">,
+							<cfqueryparam cfsqltype="cf_sql_varchar" value="#f[2]#">,
 							<cfqueryparam cfsqltype="cf_sql_numeric" value="#application.razuna.api.hostid["#arguments.api_key#"]#">,
 							<cfqueryparam CFSQLType="CF_SQL_VARCHAR" value="#createuuid()#">
 							)
@@ -170,7 +170,7 @@
 						<cfelse>
 							<cfquery datasource="#application.razuna.api.dsn#">
 							UPDATE #application.razuna.api.prefix["#arguments.api_key#"]#custom_fields_values
-							SET cf_value = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ReplaceNoCase(f[2],',','&##44;','ALL')#">
+							SET cf_value = <cfqueryparam cfsqltype="cf_sql_varchar" value="#f[2]#">
 							WHERE cf_id_r = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#f[1]#">
 							AND asset_id_r = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#i#">
 							</cfquery>
@@ -183,11 +183,11 @@
 						FROM #application.razuna.api.prefix["#arguments.api_key#"]#custom_fields
 						WHERE cf_id = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#f[1]#">
 						</cfquery>
-						<cfset oldselectlist = listFind(qry2.cf_select_list, "#ReplaceNoCase(f[2],',','&##44;')#")>
+						<cfset oldselectlist = listFind(qry2.cf_select_list, "#f[2]#")>
 						<!--- If not in list, update it --->
 						<cfif oldselectlist is 0>
 							<cfif len(trim(f[2]))>
-								<cfset newselectlist =  listAppend(qry2.cf_select_list, "#ReplaceNoCase(f[2],',','&##44;')#", ",")>
+								<cfset newselectlist =  listAppend(qry2.cf_select_list, "#f[2]#", ",")>
 								<cfquery datasource="#application.razuna.api.dsn#">
 								UPDATE #application.razuna.api.prefix["#arguments.api_key#"]#custom_fields
 								SET cf_select_list = <cfqueryparam cfsqltype="cf_sql_varchar" value="#newselectlist#">
